@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{5613F3EF-89C6-40C4-AB9B-949FF005CA12}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ContactController.cs">
+    <Files>
+      <File FileName="Startup.cs" Line="43" Column="34" />
+      <File FileName="Models/UserContact.cs" Line="10" Column="44" />
+      <File FileName="Controllers/ContactController.cs" Line="54" Column="10" />
+      <File FileName="Dependency.cs" Line="20" Column="32" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ContactApi2" expanded="True">
+            <Node name="ContactApi2" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="ContactController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ContactApi2 PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
