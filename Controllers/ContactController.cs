@@ -9,6 +9,7 @@ using ContactApi2.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using System.Net.Http;
 using Npgsql;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace ContactApi2.Controllers
 {
@@ -65,7 +66,7 @@ namespace ContactApi2.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Patch(UserContact user, int id)
+        public IActionResult Patch( [FromBody]JsonPatchDocument<UserContact> user, int id)
         {
             var result = _database.Update(user, id);
             return Ok(result);

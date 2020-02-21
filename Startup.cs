@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using System.Net.Http;
 using Npgsql;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Options;
 
 namespace ContactApi2
 {
@@ -29,24 +31,36 @@ namespace ContactApi2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
+            });
             services
                     .AddControllersWithViews()
                     .AddNewtonsoftJson();
 
-            Uri endpoint = new Uri("https://jsonplaceholder.typicode.com/");
-
-            var httpClient = new HttpClient()
-            {
-                BaseAddress = endpoint,
-            };
              var connection = new NpgsqlConnection("Host=127.0.0.1;Username=postgres;Password=docker;Database=postgres");
 
             // services.AddSingleton<HttpClient>(httpClient);
             services.AddSingleton<NpgsqlConnection>(connection);
             services.AddTransient<IDatabase, Database>();
+
         
-            //services.AddContactContext
+        }
+         private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
+        {
+            var builder = new ServiceCollection()
+                .AddLogging()
+                .AddMvc()
+                .AddNewtonsoftJson()
+                .Services.BuildServiceProvider();
+
+            return builder
+                .GetRequiredService<IOptions<MvcOptions>>()
+                .Value
+                .InputFormatters
+                .OfType<NewtonsoftJsonPatchInputFormatter>()
+                .First();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
