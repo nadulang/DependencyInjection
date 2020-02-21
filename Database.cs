@@ -92,7 +92,7 @@ public class Database : IDatabase
         _connection.Open();
         user.ApplyTo(users);
 
-        command.CommandText = $"UPDATE contacts (username, passkey, email, full_name) SET (@username, @passkey, @email, @full_name) WHERE id={id} RETURNING id, username, passkey, email, full_name";
+        command.CommandText = $"UPDATE contacts SET (username, passkey, email, full_name) = (@username, @passkey, @email, @full_name) WHERE id={id}";
         command.Parameters.AddWithValue("@username", users.Username);
         command.Parameters.AddWithValue("@passkey", users.Passkey);
         command.Parameters.AddWithValue("@email", users.Email);
